@@ -11,5 +11,18 @@ public class ContaPoupanca extends Conta {
         super(titular, saldo, numeroConta);
     }
 
+    @Override
+    public void investir(BigDecimal valor) {
+        System.out.println("Não é possível fazer investimentos utilizando uma conta poupança.");
+    }
+
+    @Override
+    public String toString() {
+        return "ContaPoupança {"  +
+                "titular=" + getTitular() +
+                ", saldo=" + getSaldo() +
+                ", numeroConta=" + getNumeroConta() +
+                "}";
+    }
 
 }

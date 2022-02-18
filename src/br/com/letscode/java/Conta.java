@@ -60,11 +60,16 @@ public abstract class Conta {
 
     // sacar
     public void sacar( BigDecimal valor) {
-        if(valor.compareTo(this.saldo) == 1) {
+        if(! Verificacoes.verificarSeSaldoMaiorQueValor(this, valor)) {
             System.out.println("Não é possível realizar essa operação. \n Seu saldo atual é R$ " + this.saldo+ "\n");
-        } else if ( this.titular instanceof PessoaJuridica ){
-            this.saldo = this.saldo.subtract(valor.multiply(BigDecimal.valueOf(1.05)));
-            System.out.println("Saque realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo+ "\n");
+        } else if (Verificacoes.verificarSePessoaJuridica(this)) {
+            if(! Verificacoes.verificarSeSaldoMaiorQueValorPJ(this, valor)) {
+                System.out.println("Não é possível realizar essa operação  ** LEMBRETE : há uma taxa de 0,05% em saques realizados " +
+                        "Pessoa Jurídica **  \n Seu saldo atual é R$ " + this.saldo+ "\n");
+            } else {
+                this.saldo = this.saldo.subtract(valor.multiply(BigDecimal.valueOf(1.005)));
+                System.out.println("Saque realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo + "\n");
+            }
         } else {
             this.saldo = this.saldo.subtract(valor);
             System.out.println("Saque realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo+ "\n");
@@ -73,7 +78,7 @@ public abstract class Conta {
 
     // transferir // validar contaDestino ?
     public void transferir( BigDecimal valor, Conta contaDestino) {
-        if(valor.compareTo(this.saldo) == 1 ) {
+        if(! Verificacoes.verificarSeSaldoMaiorQueValor(this, valor) ) {
             System.out.println("Não é possível realizar essa operação. \n Seu saldo atual é R$ " + this.saldo+ "\n");
         }  else {
             this.sacar(valor);
@@ -83,6 +88,9 @@ public abstract class Conta {
     }
 
     // investir ? nao possui em todos
+    public void investir( BigDecimal valor) {
+
+    }
 
 
 
