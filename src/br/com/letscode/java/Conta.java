@@ -21,10 +21,6 @@ public abstract class Conta {
         return titular;
     }
 
-    public void setTitular(Cliente titular) {
-        this.titular = titular;
-    }
-
     public BigDecimal getSaldo() {
         return saldo;
     }
@@ -37,62 +33,64 @@ public abstract class Conta {
         return numeroConta;
     }
 
-    public void setNumeroConta(int numeroConta) {
-        this.numeroConta = numeroConta;
-    }
 
-
-
-    ///////////
-
-    // consultar saldo
     public void consultarSaldo() {
 
-        System.out.println("Olá " + this.titular.getNome() + "! \n" +
-                "O seu saldo atual é R$" + this.saldo);
+        System.out.printf("Olá %s ! \n" +
+                "O seu saldo atual é R$ %.2f%n %n" ,this.titular.getNome() , this.saldo);
     }
 
-    // depositar ?? não possui em todos
+
     public void depositar( BigDecimal valor) {
-        // validacao?
         this.saldo = this.saldo.add(valor);
-        System.out.println("Depósito realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo + "\n");
+        System.out.printf("Depósito realizado com sucesso! \n Seu saldo atual é R$ %.2f%n %n ", this.saldo);
     }
 
-    // sacar
+
     public void sacar( BigDecimal valor) {
         if(! Verificacoes.verificarSeSaldoMaiorQueValor(this, valor)) {
-            System.out.println("Não é possível realizar essa operação. \n Seu saldo atual é R$ " + this.saldo+ "\n");
+            System.out.printf("Não é possível realizar essa operação. \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
         } else if (Verificacoes.verificarSePessoaJuridica(this)) {
             if(! Verificacoes.verificarSeSaldoMaiorQueValorPJ(this, valor)) {
-                System.out.println("Não é possível realizar essa operação  ** LEMBRETE : há uma taxa de 0,05% em saques realizados " +
-                        "Pessoa Jurídica **  \n Seu saldo atual é R$ " + this.saldo+ "\n");
+                System.out.printf("Não é possível realizar essa operação  ** LEMBRETE : há uma taxa de 0,5%% em saques realizados por" +
+                        "Pessoa Jurídica **  \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
             } else {
                 this.saldo = this.saldo.subtract(valor.multiply(BigDecimal.valueOf(1.005)));
-                System.out.println("Saque realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo + "\n");
+                System.out.printf("Saque realizado com sucesso! \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
             }
         } else {
             this.saldo = this.saldo.subtract(valor);
-            System.out.println("Saque realizado com sucesso! \n Seu saldo atual é R$ " + this.saldo+ "\n");
+            System.out.printf("Saque realizado com sucesso! \n Seu saldo atual é R$ %.2f%n %n",this.saldo);
         }
     }
 
-    // transferir // validar contaDestino ?
+
     public void transferir( BigDecimal valor, Conta contaDestino) {
-        if(! Verificacoes.verificarSeSaldoMaiorQueValor(this, valor) ) {
-            System.out.println("Não é possível realizar essa operação. \n Seu saldo atual é R$ " + this.saldo+ "\n");
-        }  else {
-            this.sacar(valor);
-            contaDestino.depositar(valor);
-            System.out.println("Transferência realizada com sucesso! \n Seu saldo atual é R$ " + this.saldo + "\n");
+        if (Verificacoes.verificarSePessoaJuridica(this)) {
+            if (!Verificacoes.verificarSeSaldoMaiorQueValorPJ(this, valor)) {
+                System.out.printf("Não é possível realizar essa operação  ** LEMBRETE : há uma taxa de 0,5%% em transferências realizadas por" +
+                        "Pessoa Jurídica **  \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
+            } else {
+                this.saldo = this.saldo.subtract(valor.multiply(BigDecimal.valueOf(1.005)));
+                contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+                System.out.printf("Transferência realizada com sucesso! \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
+
+            }
+        } else {
+            if (!Verificacoes.verificarSeSaldoMaiorQueValor(this, valor)) {
+                System.out.printf("Não é possível realizar essa operação. \n Seu saldo atual é R$ %.2f%n %n ", this.saldo);
+            } else {
+                this.saldo = this.saldo.subtract(valor);
+                contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+                System.out.printf("Transferência realizada com sucesso! \n Seu saldo atual é R$ %.2f%n %n", this.saldo);
+
+            }
         }
     }
 
-    // investir ? nao possui em todos
     public void investir( BigDecimal valor) {
 
     }
-
 
     @Override
     public String toString() {

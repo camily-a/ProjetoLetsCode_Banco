@@ -17,22 +17,21 @@ public class ContaInvestimento extends Conta {
         if( Verificacoes.verificarSeSaldoMaiorQueValor(this , valor)) {
             if(Verificacoes.verificarSePessoaJuridica(this)) {
                 this.setSaldo(getSaldo().add(valor.multiply(BigDecimal.valueOf(0.12))));
-                System.out.println("Seu investimento foi realizado com sucesso! \n Seu saldo atual é R$" + this.getSaldo() + "\n");
+                System.out.printf("Seu investimento foi realizado com sucesso! \n Seu saldo atual é R$ %.2f%n %n", this.getSaldo());
             } else {
                 this.setSaldo(getSaldo().add(valor.multiply(BigDecimal.valueOf(0.10))));
-                System.out.println("Seu investimento foi realizado com sucesso! \n Seu saldo atual é R$" + this.getSaldo() + "\n");
+                System.out.printf("Seu investimento foi realizado com sucesso! \n Seu saldo atual é R$ %.2f%n %n",this.getSaldo());
             }
         } else {
-            System.out.println("Não é possível realizar esse investimento! \n Seu saldo atual é R$" + this.getSaldo() + "\n");
+            System.out.printf("Não é possível realizar esse investimento! \n Seu saldo atual é R$ %.2f%n %n " + this.getSaldo() );
         }
 
     }
 
     @Override
     public void depositar( BigDecimal valor) {
-        System.out.println("Não é possivel realizar depósitos em conta Investimento. \n Tente investir() ou abra outro tipo de conta.");
+        System.out.println("Não é possivel realizar depósitos em conta Investimento. \n Tente investir() ou abra outro tipo de conta.\n");
     }
-
 
 
 

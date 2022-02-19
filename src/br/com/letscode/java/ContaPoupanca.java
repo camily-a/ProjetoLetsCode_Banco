@@ -13,7 +13,7 @@ public class ContaPoupanca extends Conta {
 
     @Override
     public void investir(BigDecimal valor) {
-        System.out.println("Não é possível fazer investimentos utilizando uma conta poupança.");
+        System.out.println("Não é possível fazer investimentos utilizando uma conta poupança.\n");
     }
 
     @Override

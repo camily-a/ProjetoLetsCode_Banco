@@ -13,7 +13,7 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void investir(BigDecimal valor) {
-        System.out.println("Não é possível fazer investimentos utilizando uma conta corrente");
+        System.out.println("Não é possível fazer investimentos utilizando uma conta corrente \n");
     }
 
     @Override

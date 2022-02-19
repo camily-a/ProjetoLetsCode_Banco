@@ -30,12 +30,12 @@ public class Aplicacao {
 
         System.out.println("------------------------------------------------------------------------------------------");
 
-        bancoB.criarConta(contaMaria);
-        bancoB.criarConta(contaJose);
-        bancoB.criarConta(contaMarcia);
-        bancoB.criarConta(contaJoao);
-        bancoB.criarConta(contaMariana);
-        bancoB.criarConta(contaJubileu);
+        bancoB.abrirConta(contaMaria);
+        bancoB.abrirConta(contaJose);
+        bancoB.abrirConta(contaMarcia);
+        bancoB.abrirConta(contaJoao);
+        bancoB.abrirConta(contaMariana);
+        bancoB.abrirConta(contaJubileu);
 
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -48,9 +48,25 @@ public class Aplicacao {
 
         System.out.println("------------------------------------------------------------------------------------------");
 
+        contaMaria.depositar(BigDecimal.valueOf(500));
+        contaJose.depositar(BigDecimal.valueOf(100));
+        contaMarcia.depositar(BigDecimal.valueOf(1_001));
+        contaJoao.depositar(BigDecimal.valueOf(990));
+        contaMariana.depositar(BigDecimal.valueOf(100));
+        contaJubileu.depositar(BigDecimal.valueOf(10000));
+
+        System.out.println("------------------------------------------------------------------------------------------");
+
+        contaMaria.investir(BigDecimal.valueOf(500));
+        contaJose.investir(BigDecimal.valueOf(100));
+        contaMarcia.investir(BigDecimal.valueOf(1_001));
+        contaJoao.investir(BigDecimal.valueOf(990));
+        contaMariana.investir(BigDecimal.valueOf(100));
+        contaJubileu.investir(BigDecimal.valueOf(100));
+
+        System.out.println("------------------------------------------------------------------------------------------");
 
         contaMaria.sacar(BigDecimal.valueOf(500));
-        contaJose.sacar(BigDecimal.valueOf(10_000));
         contaJose.sacar(BigDecimal.valueOf(100));
         contaMarcia.sacar(BigDecimal.valueOf(1_001));
         contaJoao.sacar(BigDecimal.valueOf(990));
@@ -59,10 +75,14 @@ public class Aplicacao {
 
         System.out.println("------------------------------------------------------------------------------------------");
 
-        contaMariana.investir(BigDecimal.valueOf(100));
-        contaJubileu.investir(BigDecimal.valueOf(100));
-        contaJose.investir(BigDecimal.valueOf(200));
-
+        contaMaria.transferir(BigDecimal.valueOf(500), contaJose);
+        contaJose.transferir(BigDecimal.valueOf(10_499.5), contaMarcia);
+        contaMarcia.transferir(BigDecimal.valueOf(1_001), contaJoao);
+        contaJoao.transferir(BigDecimal.valueOf(990), contaMariana);
+        contaMariana.transferir(BigDecimal.valueOf(100), contaJubileu);
+        contaMaria.consultarSaldo();
+        contaJubileu.transferir(BigDecimal.valueOf(100),contaMaria);
+        contaMaria.consultarSaldo();
 
 
     }
