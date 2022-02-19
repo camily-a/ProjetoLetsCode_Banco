@@ -33,6 +33,7 @@ public class Aplicacao {
         contaMaria.sacar(BigDecimal.valueOf(500));
         contaJose.sacar(BigDecimal.valueOf(10_000));
         contaJose.sacar(BigDecimal.valueOf(100));
+        contaJose.sacar(BigDecimal.valueOf(100));
 
 
         contaMariana.investir(BigDecimal.valueOf(100));
