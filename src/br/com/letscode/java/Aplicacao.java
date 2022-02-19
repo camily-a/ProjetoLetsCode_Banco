@@ -28,14 +28,36 @@ public class Aplicacao {
         System.out.println(contaMariana);
         System.out.println(contaJubileu);
 
+        System.out.println("------------------------------------------------------------------------------------------");
+
         bancoB.criarConta(contaMaria);
+        bancoB.criarConta(contaJose);
+        bancoB.criarConta(contaMarcia);
+        bancoB.criarConta(contaJoao);
+        bancoB.criarConta(contaMariana);
+        bancoB.criarConta(contaJubileu);
+
+        System.out.println("------------------------------------------------------------------------------------------");
+
+        contaMaria.consultarSaldo();
+        contaJose.consultarSaldo();
+        contaMarcia.consultarSaldo();
+        contaJoao.consultarSaldo();
+        contaMariana.consultarSaldo();
+        contaJubileu.consultarSaldo();
+
+        System.out.println("------------------------------------------------------------------------------------------");
+
 
         contaMaria.sacar(BigDecimal.valueOf(500));
         contaJose.sacar(BigDecimal.valueOf(10_000));
         contaJose.sacar(BigDecimal.valueOf(100));
-        contaJose.sacar(BigDecimal.valueOf(100));
+        contaMarcia.sacar(BigDecimal.valueOf(1_001));
+        contaJoao.sacar(BigDecimal.valueOf(990));
+        contaMariana.sacar(BigDecimal.valueOf(100));
+        contaJubileu.sacar(BigDecimal.valueOf(10000));
 
-
+        System.out.println("------------------------------------------------------------------------------------------");
 
         contaMariana.investir(BigDecimal.valueOf(100));
         contaJubileu.investir(BigDecimal.valueOf(100));

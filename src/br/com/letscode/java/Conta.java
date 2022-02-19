@@ -48,7 +48,8 @@ public abstract class Conta {
     // consultar saldo
     public void consultarSaldo() {
 
-        System.out.println("O seu saldo atual é R$" + this.saldo);
+        System.out.println("Olá " + this.titular.getNome() + "! \n" +
+                "O seu saldo atual é R$" + this.saldo);
     }
 
     // depositar ?? não possui em todos
@@ -91,8 +92,6 @@ public abstract class Conta {
     public void investir( BigDecimal valor) {
 
     }
-
-
 
 
     @Override

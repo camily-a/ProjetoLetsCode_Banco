@@ -28,6 +28,12 @@ public class ContaInvestimento extends Conta {
 
     }
 
+    @Override
+    public void depositar( BigDecimal valor) {
+        System.out.println("Não é possivel realizar depósitos em conta Investimento. \n Tente investir() ou abra outro tipo de conta.");
+    }
+
+
 
 
     @Override

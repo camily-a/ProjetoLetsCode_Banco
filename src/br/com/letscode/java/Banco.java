@@ -17,11 +17,11 @@ public class Banco {
     public void criarConta(Conta novaConta) {
         // validar tipo de conta e tipo de pessoa (instance of)
         if ( novaConta.getTitular() instanceof PessoaJuridica && novaConta instanceof ContaPoupanca) {
-                System.out.println("Não é possível realizar a operação: " +
-                        "Pessoas Jurídicas não podem abrir Conta Poupança");
+                System.out.println("Não é possível realizar a operação: \n " +
+                        "Pessoas Jurídicas não podem abrir Conta Poupança \n");
         } else{
             contas.add(novaConta);
-            System.out.println("Conta criada com sucesso!");
+            System.out.println("Conta criada com sucesso!\n");
         }
 
     }
